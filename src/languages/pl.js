@@ -1,4 +1,4 @@
-export default polish = {
+export default {
     appDescription:  "",
     switchLanguage: "",
     searchPlaceholder: "",
