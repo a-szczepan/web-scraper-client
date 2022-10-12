@@ -1,8 +1,10 @@
 import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageProvider";
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { LanguageContext } from "../context/LanguageProvider";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import PolishImg from "../assets/poland.svg";
 import EnglishImg from "../assets/uk.svg";
 
@@ -10,7 +12,7 @@ export default function LanguageSwitch(props) {
   const { language, changeLanguage } = useContext(LanguageContext);
 
   return (
-    <div>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <FormGroup>
         <FormControlLabel
           control={
@@ -24,6 +26,7 @@ export default function LanguageSwitch(props) {
           }
           label={language}
           sx={{
+            alignSelf: "flex-end",
             "& .MuiSwitch-thumb ": {
               backgroundImage: `url(${
                 language === "English" ? EnglishImg : PolishImg
@@ -35,6 +38,7 @@ export default function LanguageSwitch(props) {
           }}
         ></FormControlLabel>
       </FormGroup>
-    </div>
+      <Divider />
+    </Box>
   );
 }
