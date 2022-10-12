@@ -7,15 +7,6 @@ import { LanguageContext } from "../context/LanguageProvider";
 import PolishImg from "../assets/poland.svg";
 import EnglishImg from "../assets/uk.svg";
 
-const StyledSwitch = styled(Switch)(({ theme }) => ({
-  " .MuiSwitch-thumb": {
-    Image: `url(${PolishImg})`,
-  },
-  "	.MuiSwitch-thumb": {
-    Image: `url(${EnglishImg})`,
-  },
-}));
-
 export default function LanguageSwitch(props) {
   const { language, changeLanguage } = useContext(LanguageContext);
 
