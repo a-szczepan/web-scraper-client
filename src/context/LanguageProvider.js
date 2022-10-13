@@ -9,14 +9,15 @@ export const initialState = {
 export const LanguageContext = createContext(initialState);
 
 export const ContextProvider = ({ children }) => {
-  const [language, setLanguage] = useState("English");
+  const [language, setLanguage] = useState(initialState.language);
   const [dictionary, setDictionary] = useState(languageOptions.english);
 
   const provider = {
     language,
+    dictionary,
     changeLanguage: (languageStr) => {
       setLanguage(languageStr);
-      if (languageStr == "Polski") {
+      if (languageStr === "Polski") {
         setDictionary(languageOptions.polish);
       } else {
         setDictionary(languageOptions.english);
