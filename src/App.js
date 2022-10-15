@@ -1,11 +1,15 @@
-import './App.css';
+import { Box } from "@mui/material";
+import LanguageSwitch from "./components/LanguageSwitch";
+import ProjectDescription from "./components/ProjectDescription";
+import PageContent from "./components/PageContent";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Test</h1>
-    </div>
+    <Box>
+      <LanguageSwitch />
+      <ProjectDescription />
+      <PageContent />
+    </Box>
   );
 }
-
 export default App;
