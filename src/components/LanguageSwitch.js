@@ -4,7 +4,6 @@ import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import PolishImg from "../assets/poland.svg";
 import EnglishImg from "../assets/uk.svg";
 
@@ -38,7 +37,6 @@ export default function LanguageSwitch(props) {
           }}
         ></FormControlLabel>
       </FormGroup>
-      <Divider />
     </Box>
   );
 }
