@@ -24,6 +24,7 @@ export default function ProjectDescription() {
         sx={{
           maxWidth: { xs: "80%", sm: "40%" },
           paddingBottom: { xs: "5%", lg: "0%" },
+          alignSelf: "center",
         }}
       />
       <Box sx={{ padding: { md: "0 3% 0 3%" }, flexBasis: "40%" }}>
