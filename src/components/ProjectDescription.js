@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageProvider";
 import Box from "@mui/material/Box";
-import Img from "../assets/undraw_searching_re_3ra9.svg";
+import Img from "../assets/searching.svg";
 import Typography from "@mui/material/Typography";
 
 export default function ProjectDescription() {
@@ -10,59 +10,61 @@ export default function ProjectDescription() {
   return (
     <Box
       sx={{
-        padding: "4%",
+        padding: { xs: "4%", md: "4% 4% 0 4%" },
         display: "flex",
         flexDirection: { xs: "column", sm: "row-reverse" },
-        textAlign: "left",
-        alignItems: "center",
-        gap: { sm: "3%" },
+        justifyContent: { md: "space-evenly" },
+        alignItems: { xs: "center", lg: "flex-start" },
+        gap: { sm: "4%" },
       }}
     >
       <Box
         component="img"
         src={Img}
-        sx={{ maxWidth: { xs: "80%", sm: "40%" }, paddingBottom: "5%" }}
+        sx={{
+          maxWidth: { xs: "80%", sm: "40%" },
+          paddingBottom: { xs: "5%", lg: "0%" },
+        }}
       />
-      <Box sx={{ padding: { md: "0 3% 0 3%" } }}>
+      <Box sx={{ padding: { md: "0 3% 0 3%" }, flexBasis: "40%" }}>
         <Typography
           component="h1"
           variant="h3"
-          align="center"
           gutterBottom
           sx={{
-            fontWeight: "700",
-            textJustify: "center",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundImage: "-webkit-linear-gradient(#f44336, #ffa726)",
+            paddingTop: { lg: "5%" },
+            fontWeight: "800",
           }}
         >
           {dictionary.headerText}
         </Typography>
         <Typography
-          variant="body2"
+          component="body1"
           gutterBottom
           sx={{
             whiteSpace: "pre-line",
-            textIndent: "1rem",
+            // textAlign: 'justify'
           }}
         >
           {dictionary.appAnnotationI}
         </Typography>
         <Typography
-          variant="body2"
+          variant="body1"
           gutterBottom
           sx={{
             whiteSpace: "pre-line",
+            // textAlign: 'justify'
           }}
         >
           {dictionary.appAnnotationII}
         </Typography>
         <Typography
-          variant="body2"
-          sx={{
-            textIndent: "1rem",
-          }}
+          variant="body1"
+          sx={
+            {
+              // textAlign: 'justify'
+            }
+          }
         >
           {dictionary.appDescription}
         </Typography>
