@@ -16,17 +16,18 @@ export default function PageContent() {
     <Box
       sx={{
         backgroundColor: "#f2f2f2",
-        p: { xs: "4%" },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        pt: "2%",
       }}
     >
       <Box
         sx={{
-          alignSelf: "center",
+          alignContent: "center",
           display: { sm: "flex" },
           gap: "2%",
+          width: { xs: "90vw", sm: "50vw" },
         }}
       >
         <Paper
@@ -34,7 +35,7 @@ export default function PageContent() {
           sx={{
             p: "2px 4px",
             display: "flex",
-            width: { xs: "80vw", sm: "50vw" },
+            width: { xs: "90vw", sm: "50vw" },
           }}
         >
           <InputBase
@@ -54,6 +55,7 @@ export default function PageContent() {
           variant="contained"
           onClick={() => setUseFilters(!useFilters)}
           sx={{
+            alignSelf: "center",
             minWidth: "fit-content",
             mt: { xs: "2%", sm: "0%" },
           }}
@@ -61,7 +63,9 @@ export default function PageContent() {
           {dictionary.filtersButton}
         </Button>
       </Box>
-      {useFilters ? <INCIFilter /> : null}
+      {useFilters ? (
+        <INCIFilter sx={{ width: { xs: "90vw", sm: "50vw" } }} />
+      ) : null}
     </Box>
   );
 }
