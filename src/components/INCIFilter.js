@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { LanguageContext } from "../context/LanguageProvider";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Chip from "@mui/material/Chip";
@@ -14,95 +14,217 @@ import Button from "@mui/material/Button";
 
 export default function INCIFilter() {
   const { dictionary } = useContext(LanguageContext);
+  const { register, handleSubmit } = useForm();
   const [contain, setContain] = useState(true);
   const [addExtraFilters, setAddExtraFilters] = useState(false);
+  const [filter, setFilter] = useState({
+    keyWords: "",
+    firstFilter: {
+      contain: true,
+      list: [],
+    },
+    secondFilter: {
+      contain: false,
+      list: [],
+    },
+    category: "",
+    brand: "",
+  });
+
+  useEffect(() => {
+    console.log(filter);
+  }, [filter]);
 
   return (
-    <FormControl
+    <Box
       sx={{
         width: { xs: "90vw", sm: "50vw" },
         alignItems: "flex-start",
       }}
     >
-      <Box sx={{ display: "flex", gap: "1%", pt: "2%" }}>
+      <Box
+        component="form"
+        sx={{ display: "flex", gap: "1%", m: "5px 0px 5px 0px" }}
+        onSubmit={handleSubmit((data) => {
+          if (!filter.firstFilter.list.includes(data.ingredientFirst)) {
+            const newValue = [...filter.firstFilter.list, data.ingredientFirst];
+            setFilter({
+              ...filter,
+              firstFilter: {
+                contain: data.containFirst,
+                list: newValue,
+              },
+            });
+          }
+        })}
+      >
         <Select
           value={contain}
-          onChange={(e) => setContain(e.target.value)}
+          {...register("containFirst", {
+            onChange: (e) => setContain(e.target.value),
+          })}
           sx={{ minWidth: "132px", maxHeight: "45px" }}
         >
           <MenuItem value={true}>{dictionary.contain}</MenuItem>
           <MenuItem value={false}>{dictionary.notContain}</MenuItem>
         </Select>
-        <Paper component="form" sx={{ display: "flex", width: "100%" }}>
+        <Paper sx={{ display: "flex", width: { xs: "100%", md: "20vw" } }}>
           <InputBase
             placeholder={dictionary.filterInput}
             variant="standard"
+            {...register("ingredientFirst")}
             sx={{
               ml: 1,
               flex: 1,
               caretColor: "black",
             }}
           />
-          <IconButton type="button" sx={{ p: "10px" }}>
-            {" "}
+          <IconButton type="submit" sx={{ p: "10px" }}>
             <AddCircleIcon />
           </IconButton>
         </Paper>
       </Box>
-      {/* <Stack direction="row" spacing={1}>
-        <Chip label="Deletable" onDelete={() => {}} />
-        <Chip label="Deletable" variant="outlined" onDelete={() => {}} />
-      </Stack> */}
+      {filter.firstFilter.list.length > 0 ? (
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            m: "3px 0px 5px 0px",
+            overflow: "auto",
+            width: { xs: "100%", md: "50vw" },
+          }}
+        >
+          {filter.firstFilter.list.map((element) => (
+            <Chip
+              label={element}
+              onDelete={() => {
+                const newValue = filter.firstFilter.list.filter(
+                  (item) => element !== item
+                );
+                setFilter({
+                  ...filter,
+                  firstFilter: {
+                    list: newValue,
+                  },
+                });
+              }}
+            ></Chip>
+          ))}
+        </Stack>
+      ) : null}
       <Button
         variant="outlined"
         onClick={() => setAddExtraFilters(!addExtraFilters)}
         startIcon={<AddCircleIcon />}
         sx={{
           width: "fit-content",
-          m: "1% 0 1% 0",
         }}
       >
         {dictionary.addFilter}
       </Button>
       {addExtraFilters ? (
-        <Box sx={{ display: "flex", alignItems: "center", gap: "1%" }}>
-          <Select
-            value={!contain}
-            onChange={(e) => {
-              setContain(e.target.value);
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1%",
+              m: "5px 0px 5px 0px",
             }}
-            sx={{ minWidth: "132px", maxHeight: "45px" }}
+            onSubmit={handleSubmit((data) => {
+              if (!filter.secondFilter.list.includes(data.ingredientSecond)) {
+                const newValue = [
+                  ...filter.secondFilter.list,
+                  data.ingredientSecond,
+                ];
+                setFilter({
+                  ...filter,
+                  secondFilter: {
+                    contain: data.containSecond,
+                    list: newValue,
+                  },
+                });
+              }
+            })}
           >
-            <MenuItem value={!contain}>
-              {" "}
-              {!contain === true ? dictionary.contain : dictionary.notContain}
-            </MenuItem>
-          </Select>
-          <Paper component="form" sx={{ display: "flex", width: "100%" }}>
-            <InputBase
-              placeholder={dictionary.filterInput}
-              variant="standard"
+            <Select
+              value={!contain}
+              sx={{ minWidth: "132px", maxHeight: "45px" }}
+              {...register("containSecond", {
+                onChange: (e) => setContain(e.target.value),
+              })}
+            >
+              <MenuItem value={!contain}>
+                {!contain === true ? dictionary.contain : dictionary.notContain}
+              </MenuItem>
+            </Select>
+            <Paper
+              component="form"
+              sx={{ display: "flex", width: { xs: "100%", md: "20vw" } }}
+            >
+              <InputBase
+                placeholder={dictionary.filterInput}
+                variant="standard"
+                {...register("ingredientSecond")}
+                sx={{
+                  ml: 1,
+                  flex: 1,
+                  caretColor: "black",
+                }}
+              />
+              <IconButton type="submit" sx={{ p: "10px" }}>
+                <AddCircleIcon />
+              </IconButton>
+            </Paper>
+          </Box>
+          {filter.secondFilter.list.length > 0 ? (
+            <Stack
+              direction="row"
+              spacing={1}
               sx={{
-                ml: 1,
-                flex: 1,
-                caretColor: "black",
+                m: "3px 0px 5px 0px",
+                overflow: "auto",
+                width: { xs: "100%", md: "50vw" },
               }}
-            />
-            <IconButton type="button" sx={{ p: "10px" }}>
-              <AddCircleIcon />
-            </IconButton>
-          </Paper>
-          {/* <Stack direction="row" spacing={1}>
-            <Chip label="Deletable" onDelete={() => {}} />
-            <Chip label="Deletable" variant="outlined" onDelete={() => {}} />
-          </Stack> */}
+            >
+              {filter.secondFilter.list.map((element) => (
+                <Chip
+                  label={element}
+                  onDelete={() => {
+                    const newValue = filter.secondFilter.list.filter(
+                      (item) => element !== item
+                    );
+                    setFilter({
+                      ...filter,
+                      secondFilter: {
+                        list: newValue,
+                      },
+                    });
+                  }}
+                ></Chip>
+              ))}
+            </Stack>
+          ) : null}
         </Box>
       ) : null}
-      {/* <Select label="Category" >
-        <MenuItem value={{}}>{}</MenuItem>
-        <MenuItem value={{}}>{}</MenuItem>
-      </Select>
-      <Button variant="contained">Zaaplikuj filtry</Button> */}
-    </FormControl>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "2%",
+          width: { xs: "100%", md: "20vw" },
+          m: "3px 0 8px 0",
+        }}
+      >
+        <Select value={filter.category}>
+          <MenuItem value={filter.category}>Odżywki</MenuItem>
+          <MenuItem value={{}}>{}</MenuItem>
+        </Select>
+        <Select value="Brand">
+          <MenuItem value={{}}>{}</MenuItem>
+          <MenuItem value={{}}>{}</MenuItem>
+        </Select>
+      </Box>
+      <Button variant="contained">{dictionary.applyFilters}</Button>
+    </Box>
   );
 }
