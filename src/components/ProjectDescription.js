@@ -45,7 +45,7 @@ export default function ProjectDescription() {
           {dictionary.headerText}
         </Typography>
         <Typography
-          component="body1"
+          variant="body1"
           gutterBottom
           sx={{
             whiteSpace: "pre-line",
