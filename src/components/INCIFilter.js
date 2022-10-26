@@ -16,9 +16,11 @@ export default function INCIFilter(props) {
   const { register, handleSubmit } = useForm();
 
   return (
-    <Box>
+    <Box sx={{ width: "inherit" }}>
       <Box
         component="form"
+        display="flex"
+        gap="2%"
         onSubmit={handleSubmit((data) => {
           if (!props.refs.list.includes(data[props.refs.registerIngredient])) {
             const newValue = [
@@ -38,6 +40,7 @@ export default function INCIFilter(props) {
         {props.refs.type === "first" ? (
           <Select
             value={props.contain}
+            sx={{ minWidth: "132px", maxHeight: "45px" }}
             {...register(props.refs.registerContain, {
               onChange: (e) => {
                 props.setContain(e.target.value);
@@ -61,6 +64,7 @@ export default function INCIFilter(props) {
         ) : (
           <Select
             value={!props.contain}
+            sx={{ minWidth: "132px", maxHeight: "45px" }}
             {...register(props.refs.registerContain, {
               onChange: (e) => props.setContain(e.target.value),
             })}
@@ -72,7 +76,7 @@ export default function INCIFilter(props) {
             </MenuItem>
           </Select>
         )}
-        <Paper>
+        <Paper sx={{ display: "flex", width: "100%" }}>
           <InputBase
             placeholder={dictionary.filterInput}
             variant="standard"
@@ -89,7 +93,11 @@ export default function INCIFilter(props) {
         </Paper>
       </Box>
       {props.refs.list.length > 0 ? (
-        <Stack direction="row" spacing={1} sx={{ overflow: "auto" }}>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ overflow: "auto", p: "5px 0 5px 0" }}
+        >
           {props.refs.list.map((element, index) => (
             <Chip
               key={index}
