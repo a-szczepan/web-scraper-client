@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { LanguageContext } from "../context/LanguageProvider";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+import {
+  Select,
+  MenuItem,
+  Chip,
+  Stack,
+  Paper,
+  IconButton,
+  InputBase,
+  Box,
+} from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import Box from "@mui/material/Box";
 
 export default function INCIFilter(props) {
   const { dictionary } = useContext(LanguageContext);
