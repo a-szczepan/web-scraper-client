@@ -1,30 +1,33 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageProvider";
-import Box from "@mui/material/Box";
-import InputBase from "@mui/material/InputBase";
-import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
+import { Box, InputBase, Paper, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Button from "@mui/material/Button";
+
 export default function SearchBar(props) {
   const { dictionary } = useContext(LanguageContext);
   return (
-    <Box sx={{ backgroundColor: "pink" }}>
-      <Paper component="form">
+    <div>
+      <Paper
+        component="form"
+        sx={{
+          p: "2px 4px",
+          display: "flex",
+        }}
+      >
         <InputBase
           placeholder={dictionary.searchPlaceholder}
           variant="standard"
+          sx={{
+            ml: 1,
+            flex: 1,
+            caretColor: "black",
+            minWidth: "50vw",
+          }}
         />
         <IconButton type="button">
           <SearchIcon />
         </IconButton>
       </Paper>
-      <Button
-        variant="contained"
-        onClick={() => props.setUseFilters(!props.useFilters)}
-      >
-        {dictionary.filtersButton}
-      </Button>
-    </Box>
+    </div>
   );
 }
