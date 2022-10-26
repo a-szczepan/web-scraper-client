@@ -13,7 +13,7 @@ export default function ProjectDescription() {
         p: { xs: "4%" },
         display: "flex",
         flexDirection: { xs: "column", sm: "row-reverse" },
-        justifyContent: { md: "space-evenly" },
+        justifyContent: { sm: "space-evenly" },
         alignItems: { xs: "center", lg: "flex-start" },
         gap: { sm: "4%" },
       }}
