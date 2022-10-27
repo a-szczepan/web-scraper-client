@@ -1,43 +1,75 @@
-import { FormControl, FormHelperText, Select, MenuItem } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import {
+  FormControl,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+  Chip,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { LanguageContext } from "../context/LanguageProvider";
 import { getCategories } from "../requests/requests";
 
 export default function CategoryFilter(props) {
   const { dictionary } = useContext(LanguageContext);
-  const { register } = useForm();
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState(false);
 
   useEffect(() => {
+    console.log(props.filter);
     async function fetchData() {
       const categories = await getCategories();
-      setCategories(["Brak", ...categories.data]);
+      setCategories([...categories.data]);
     }
     fetchData();
   }, [props.filter]);
 
   return (
-    <FormControl>
-      <FormHelperText htmlFor="category-select">
-        {dictionary.category}
-      </FormHelperText>
-      <Select
-        id="category-select"
-        defaultValue="Brak"
-        {...register("category", {
-          onChange: (e) =>
-            props.setFilter({ ...props.filter, category: e.target.value }),
-        })}
-      >
-        {categories.length > 0
-          ? categories.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {dictionary.categories[item]}
-              </MenuItem>
-            ))
-          : null}
-      </Select>
+    <FormControl sx={{ width: "100%" }}>
+      <Accordion elevation={0} sx={{ backgroundColor: "inherit" }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: "0" }}>
+          <Typography variant="h6">{dictionary.category}</Typography>
+        </AccordionSummary>
+        <AccordionDetails sx={{ p: "0" }}>
+          <List dense={false}>
+            {category ? (
+              <ListItem>
+                <Chip
+                  label={dictionary.categories[category]}
+                  onDelete={() => {
+                    setCategory(false);
+                    props.setFilter({
+                      ...props.filter,
+                      category: false,
+                    });
+                  }}
+                />
+              </ListItem>
+            ) : null}
+            {categories.length > 0
+              ? categories.map((item, index) => (
+                  <ListItem key={index} value={item} sx={{ p: "0" }}>
+                    <ListItemButton
+                      sx={{ pt: "3px" }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCategory(item);
+                        props.setFilter({ ...props.filter, category: item });
+                      }}
+                    >
+                      <ListItemText>{dictionary.categories[item]}</ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                ))
+              : null}
+          </List>
+        </AccordionDetails>
+      </Accordion>
     </FormControl>
   );
 }
