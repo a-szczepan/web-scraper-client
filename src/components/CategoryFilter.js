@@ -30,46 +30,44 @@ export default function CategoryFilter(props) {
   }, [props.filter]);
 
   return (
-    <FormControl sx={{ width: "100%" }}>
-      <Accordion elevation={0} sx={{ backgroundColor: "inherit" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: "0" }}>
-          <Typography variant="h6">{dictionary.category}</Typography>
-        </AccordionSummary>
-        <AccordionDetails sx={{ p: "0" }}>
-          <List dense={false}>
-            {category ? (
-              <ListItem>
-                <Chip
-                  label={dictionary.categories[category]}
-                  onDelete={() => {
-                    setCategory(false);
-                    props.setFilter({
-                      ...props.filter,
-                      category: false,
-                    });
-                  }}
-                />
-              </ListItem>
-            ) : null}
-            {categories.length > 0
-              ? categories.map((item, index) => (
-                  <ListItem key={index} value={item} sx={{ p: "0" }}>
-                    <ListItemButton
-                      sx={{ pt: "3px" }}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setCategory(item);
-                        props.setFilter({ ...props.filter, category: item });
-                      }}
-                    >
-                      <ListItemText>{dictionary.categories[item]}</ListItemText>
-                    </ListItemButton>
-                  </ListItem>
-                ))
-              : null}
-          </List>
-        </AccordionDetails>
-      </Accordion>
-    </FormControl>
+    <Accordion elevation={0} sx={{ backgroundColor: "inherit", width: "100%" }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: "0" }}>
+        <Typography variant="h6">{dictionary.category}</Typography>
+      </AccordionSummary>
+      <AccordionDetails sx={{ p: "0" }}>
+        <List dense={false}>
+          {category ? (
+            <ListItem>
+              <Chip
+                label={dictionary.categories[category]}
+                onDelete={() => {
+                  setCategory(false);
+                  props.setFilter({
+                    ...props.filter,
+                    category: false,
+                  });
+                }}
+              />
+            </ListItem>
+          ) : null}
+          {categories.length > 0
+            ? categories.map((item, index) => (
+                <ListItem key={index} value={item} sx={{ p: "0" }}>
+                  <ListItemButton
+                    sx={{ pt: "3px" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCategory(item);
+                      props.setFilter({ ...props.filter, category: item });
+                    }}
+                  >
+                    <ListItemText>{dictionary.categories[item]}</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              ))
+            : null}
+        </List>
+      </AccordionDetails>
+    </Accordion>
   );
 }
