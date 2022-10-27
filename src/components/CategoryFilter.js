@@ -17,10 +17,8 @@ import { getCategories } from "../requests/requests";
 export default function CategoryFilter(props) {
   const { dictionary } = useContext(LanguageContext);
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState(false);
 
   useEffect(() => {
-    console.log(props.filter);
     async function fetchData() {
       const categories = await getCategories();
       setCategories([...categories.data]);
@@ -35,12 +33,11 @@ export default function CategoryFilter(props) {
       </AccordionSummary>
       <AccordionDetails sx={{ p: "0" }}>
         <List dense={false}>
-          {category ? (
+          {props.filter.category ? (
             <ListItem>
               <Chip
-                label={dictionary.categories[category]}
+                label={dictionary.categories[props.filter.category]}
                 onDelete={() => {
-                  setCategory(false);
                   props.setFilter({
                     ...props.filter,
                     category: false,
@@ -56,7 +53,6 @@ export default function CategoryFilter(props) {
                     sx={{ pt: "3px" }}
                     onClick={(e) => {
                       e.preventDefault();
-                      setCategory(item);
                       props.setFilter({ ...props.filter, category: item });
                     }}
                   >
