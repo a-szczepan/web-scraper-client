@@ -78,7 +78,7 @@ export default function INCIFilter(props) {
             </MenuItem>
           </Select>
         )}
-        <Paper variant="outlined" sx={{ display: "flex", width: "100%" }}>
+        <Paper variant="outlined" sx={{ display: "flex", minWidth: "126px" }}>
           <InputBase
             placeholder={dictionary.filterInput}
             {...register(props.refs.registerIngredient)}
