@@ -1,19 +1,21 @@
 import {
-  FormControl,
-  FormHelperText,
-  Checkbox,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  List,
+  ListItem,
   ListItemText,
-  Select,
-  MenuItem,
+  ListItemButton,
+  Checkbox,
 } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { LanguageContext } from "../context/LanguageProvider";
 import { getBrands } from "../requests/requests";
 
 export default function BrandFilter(props) {
   const { dictionary } = useContext(LanguageContext);
-  const { register } = useForm();
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
@@ -25,29 +27,35 @@ export default function BrandFilter(props) {
   }, [props.filter]);
 
   return (
-    <FormControl>
-      <FormHelperText htmlFor="brand-select">
-        {dictionary.brands}
-      </FormHelperText>
-      <Select
-        multiple
-        id="brand-select"
-        value={props.filter.brands}
-        {...register("brands", {
-          onChange: (e) =>
-            props.setFilter({ ...props.filter, brands: e.target.value }),
-        })}
-      >
-        {brands.length > 0
-          ? brands.map((item, index) => (
-              <MenuItem key={index} value={item}>
-                {" "}
-                <Checkbox checked={props.filter.brands.indexOf(item) > -1} />
-                <ListItemText primary={item} />{" "}
-              </MenuItem>
-            ))
-          : null}
-      </Select>
-    </FormControl>
+    <Accordion elevation={0} sx={{ backgroundColor: "inherit", width: "100%" }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: "0" }}>
+        <Typography variant="h6">{dictionary.brands}</Typography>
+      </AccordionSummary>
+      <AccordionDetails sx={{ p: "0" }}>
+        <List dense={false} sx={{ maxHeight: "40vh", overflow: "auto" }}>
+          {brands.length > 0
+            ? brands.map((item, index) => (
+                <ListItem key={index} value={item} sx={{ p: "0" }}>
+                  <ListItemButton
+                    sx={{ pt: "3px" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      props.setFilter({
+                        ...props.filter,
+                        brands: [...props.filter.brands, item],
+                      });
+                    }}
+                  >
+                    <Checkbox
+                      checked={props.filter.brands.indexOf(item) > -1}
+                    />
+                    <ListItemText primary={item} />
+                  </ListItemButton>
+                </ListItem>
+              ))
+            : null}
+        </List>
+      </AccordionDetails>
+    </Accordion>
   );
 }
