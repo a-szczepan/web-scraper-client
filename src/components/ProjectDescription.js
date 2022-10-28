@@ -8,69 +8,71 @@ export default function ProjectDescription() {
   const { dictionary } = useContext(LanguageContext);
 
   return (
-    <Box
-      sx={{
-        p: { xs: "4%" },
-        display: "flex",
-        flexDirection: { xs: "column", sm: "row-reverse" },
-        justifyContent: { sm: "space-evenly" },
-        alignItems: { xs: "center", lg: "flex-start" },
-        gap: { sm: "4%" },
-      }}
-    >
-      <Box
-        component="img"
-        src={Img}
-        sx={{
-          maxWidth: { xs: "80%", sm: "40%" },
-          pb: { xs: "5%", lg: "0%" },
-          alignSelf: "center",
-        }}
-      />
+    <Box sx={{ width: "100%", maxWidth: "1537px" }}>
       <Box
         sx={{
-          p: { md: "0 3% 0 3%" },
-          flexBasis: "40%",
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row-reverse" },
+          justifyContent: { sm: "space-evenly" },
+          alignItems: { xs: "center", lg: "flex-start" },
+          gap: { sm: "4%" },
+          p: { xs: "4%", md: "1%" },
         }}
       >
-        <Typography
-          component="h1"
-          variant="h3"
-          gutterBottom
+        <Box
+          component="img"
+          src={Img}
           sx={{
-            pt: { lg: "5%" },
-            fontWeight: "800",
+            maxWidth: { xs: "80%", sm: "40%" },
+            pb: { xs: "5%", lg: "0%" },
+            alignSelf: "center",
+          }}
+        />
+        <Box
+          sx={{
+            p: { md: "0 3% 0 3%" },
+            flexBasis: "40%",
           }}
         >
-          {dictionary.headerText}
-        </Typography>
-        <Typography
-          variant="body1"
-          gutterBottom
-          sx={{
-            whiteSpace: "pre-line",
-          }}
-        >
-          {dictionary.appAnnotationI}
-        </Typography>
-        <Typography
-          variant="body1"
-          gutterBottom
-          sx={{
-            whiteSpace: "pre-line",
-          }}
-        >
-          {dictionary.appAnnotationII}
-        </Typography>
-        <Typography
-          variant="body1"
-          gutterBottom
-          sx={{
-            whiteSpace: "pre-line",
-          }}
-        >
-          {dictionary.appDescription}
-        </Typography>
+          <Typography
+            component="h1"
+            variant="h3"
+            gutterBottom
+            sx={{
+              pt: { lg: "5%" },
+              fontWeight: "800",
+            }}
+          >
+            {dictionary.headerText}
+          </Typography>
+          <Typography
+            variant="body1"
+            gutterBottom
+            sx={{
+              whiteSpace: "pre-line",
+            }}
+          >
+            {dictionary.appAnnotationI}
+          </Typography>
+          <Typography
+            variant="body1"
+            gutterBottom
+            sx={{
+              whiteSpace: "pre-line",
+            }}
+          >
+            {dictionary.appAnnotationII}
+          </Typography>
+          <Typography
+            variant="body1"
+            gutterBottom
+            sx={{
+              whiteSpace: "pre-line",
+            }}
+          >
+            {dictionary.appDescription}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
