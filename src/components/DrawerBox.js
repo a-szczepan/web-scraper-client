@@ -16,8 +16,8 @@ export default function DrawerBox(props) {
         </IconButton>
         <SearchBar />
       </Box>
-      <Drawer anchor="left" open={open}>
-        <Box sx={{ width: { xs: "95vw", sm: "50vw" } }} role="presentation">
+      <Drawer anchor="left" open={open} width="100%">
+        <Box sx={{ width: { xs: "95%" } }} role="presentation">
           <IconButton onClick={() => setOpen(false)}>
             <ChevronLeftIcon />{" "}
           </IconButton>
