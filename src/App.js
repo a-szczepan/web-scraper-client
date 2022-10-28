@@ -5,10 +5,18 @@ import PageContent from "./components/PageContent";
 
 function App() {
   return (
-    <Box>
+    <Box display="flex" flexDirection="column" alignItems="center">
       <LanguageSwitch />
       <ProjectDescription />
-      <PageContent />
+      <Box
+        backgroundColor="#f2f2f2"
+        width="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <PageContent />
+      </Box>
     </Box>
   );
 }
