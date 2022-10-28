@@ -10,6 +10,18 @@ export const theme = createTheme({
       main: teal[500],
     },
   },
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      lgxl: 1390,
+      xl: 1536,
+    },
+  },
+
   typography: {
     fontFamily: ["Karla", "sans-serif"].join(","),
   },
