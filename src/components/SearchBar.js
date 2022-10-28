@@ -5,29 +5,28 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBar(props) {
   const { dictionary } = useContext(LanguageContext);
+
   return (
-    <div>
-      <Paper
-        component="form"
+    <Paper
+      component="form"
+      sx={{
+        alignSelf: "center",
+        display: "flex",
+        width: "50%",
+      }}
+    >
+      <InputBase
+        placeholder={dictionary.searchPlaceholder}
+        variant="standard"
         sx={{
-          p: "2px 4px",
-          display: "flex",
+          ml: 1,
+          flex: 1,
+          caretColor: "black",
         }}
-      >
-        <InputBase
-          placeholder={dictionary.searchPlaceholder}
-          variant="standard"
-          sx={{
-            ml: 1,
-            flex: 1,
-            caretColor: "black",
-            minWidth: "50vw",
-          }}
-        />
-        <IconButton type="button">
-          <SearchIcon />
-        </IconButton>
-      </Paper>
-    </div>
+      />
+      <IconButton type="button">
+        <SearchIcon />
+      </IconButton>
+    </Paper>
   );
 }
