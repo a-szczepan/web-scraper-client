@@ -25,4 +25,5 @@ export default {
     "Szampony suche": "Dry Shampoo",
   },
   toShop: "Go to shop",
+  github: "Source code available on:",
 };

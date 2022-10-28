@@ -24,4 +24,5 @@ export default {
     "Szampony suche": "Szampony suche",
   },
   toShop: "Przejdź do sklepu",
+  github: "Kod źródłowy dostępny na:",
 };
