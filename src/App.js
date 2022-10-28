@@ -1,4 +1,4 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import LanguageSwitch from "./components/LanguageSwitch";
 import ProjectDescription from "./components/ProjectDescription";
 import PageContent from "./components/PageContent";
