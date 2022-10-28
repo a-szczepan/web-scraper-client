@@ -32,7 +32,7 @@ export default function BrandFilter(props) {
         <Typography variant="h6">{dictionary.brands}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ p: "0" }}>
-        <List dense={false} sx={{ maxHeight: "40vh", overflow: "auto" }}>
+        <List dense={false} sx={{ maxHeight: "300px", overflow: "auto" }}>
           {brands.length > 0
             ? brands.map((item, index) => (
                 <ListItem key={index} value={item} sx={{ p: "0" }}>
