@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageProvider";
-import { Box, InputBase, Paper, IconButton } from "@mui/material";
+import { InputBase, Paper, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBar(props) {
