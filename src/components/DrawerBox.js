@@ -14,7 +14,7 @@ export default function DrawerBox(props) {
         <IconButton sx={{ width: "auto" }} onClick={() => setOpen(true)}>
           <MenuIcon />
         </IconButton>
-        <SearchBar />
+        <SearchBar filter={props.filter} setFilter={props.setFilter} />
       </Box>
       <Drawer anchor="left" open={open} width="100%">
         <Box sx={{ width: { xs: "95%" } }} role="presentation">
