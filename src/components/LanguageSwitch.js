@@ -11,8 +11,8 @@ export default function LanguageSwitch(props) {
   const { language, changeLanguage } = useContext(LanguageContext);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <FormGroup>
+    <Box sx={{ width: "100%", maxWidth: "1537px" }}>
+      <FormGroup width="100%" sx={{ display: "flex", flexDirection: "column" }}>
         <FormControlLabel
           control={
             <Switch
