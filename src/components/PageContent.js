@@ -34,11 +34,10 @@ export default function PageContent() {
     <Box sx={{ width: "100%", maxWidth: "1537px", alignSelf: "center" }}>
       {isDesktop ? (
         <Box sx={{ display: { sm: "flex" }, gap: "15px" }}>
-          <Box backgroundColor="coral" sx={{ flexBasis: "20%" }}>
+          <Box sx={{ flexBasis: "20%" }}>
             <INCIFilter filter={filter} setFilter={setFilter} />
           </Box>
           <Box
-            backgroundColor="lightgreen"
             flexBasis="80%"
             display="flex"
             flexDirection="column"
