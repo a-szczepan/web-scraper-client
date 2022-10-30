@@ -17,7 +17,7 @@ export default function PageContent() {
       contain: false,
       list: [],
     },
-    category: false,
+    category: "",
     brands: [],
   });
 
@@ -45,7 +45,7 @@ export default function PageContent() {
             pt="20px"
           >
             <SearchBar filter={filter} setFilter={setFilter} />
-            <Content sx={{ width: "100%" }} />
+            <Content sx={{ width: "100%" }} filter={filter} />
           </Box>
         </Box>
       ) : (
@@ -59,7 +59,7 @@ export default function PageContent() {
           }}
         >
           <DrawerBox filter={filter} setFilter={setFilter} />
-          <Content sx={{ width: "100%" }} />
+          <Content sx={{ width: "100%" }} filter={filter} />
         </Box>
       )}
     </Box>
