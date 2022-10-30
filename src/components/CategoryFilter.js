@@ -24,7 +24,7 @@ export default function CategoryFilter(props) {
       setCategories([...categories.data]);
     }
     fetchData();
-  }, [props.filter]);
+  }, []);
 
   return (
     <Accordion elevation={0} sx={{ backgroundColor: "inherit", width: "100%" }}>
@@ -40,7 +40,7 @@ export default function CategoryFilter(props) {
                 onDelete={() => {
                   props.setFilter({
                     ...props.filter,
-                    category: false,
+                    category: "",
                   });
                 }}
               />
@@ -53,7 +53,10 @@ export default function CategoryFilter(props) {
                     sx={{ pt: "3px" }}
                     onClick={(e) => {
                       e.preventDefault();
-                      props.setFilter({ ...props.filter, category: item });
+                      const newValue = Object.keys(dictionary.categories).find(
+                        (key) => (key === item ? key : null)
+                      );
+                      props.setFilter({ ...props.filter, category: newValue });
                     }}
                   >
                     <ListItemText>{dictionary.categories[item]}</ListItemText>
