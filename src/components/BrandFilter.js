@@ -24,7 +24,7 @@ export default function BrandFilter(props) {
       setBrands(brands.data.data.map((item) => item.name));
     }
     fetchData();
-  }, [props.filter]);
+  }, []);
 
   return (
     <Accordion elevation={0} sx={{ backgroundColor: "inherit", width: "100%" }}>
@@ -36,19 +36,28 @@ export default function BrandFilter(props) {
           {brands.length > 0
             ? brands.map((item, index) => (
                 <ListItem key={index} value={item} sx={{ p: "0" }}>
-                  <ListItemButton
-                    sx={{ pt: "3px" }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      props.setFilter({
-                        ...props.filter,
-                        brands: [...props.filter.brands, item],
-                      });
-                    }}
-                  >
+                  <ListItemButton sx={{ pt: "3px" }}>
                     <Checkbox
                       checked={props.filter.brands.indexOf(item) > -1}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          const newValue = [...props.filter.brands, item];
+                          props.setFilter({
+                            ...props.filter,
+                            brands: newValue,
+                          });
+                        } else {
+                          const newValue = props.filter.brands.filter(
+                            (brand) => brand !== item
+                          );
+                          props.setFilter({
+                            ...props.filter,
+                            brands: newValue,
+                          });
+                        }
+                      }}
                     />
+
                     <ListItemText primary={item} />
                   </ListItemButton>
                 </ListItem>
