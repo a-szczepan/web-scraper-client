@@ -11,7 +11,7 @@ const dictionary = {
   filterInput: "Składnik",
   addFilter: "Oraz",
   category: "Kategoria",
-  brand: "Marki",
+  brands: "Marki",
   applyFilters: "Zaaplikuj filtry",
   categories: {
     "Kuracje i wcierki": "Kuracje i wcierki",
