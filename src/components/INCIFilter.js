@@ -25,6 +25,7 @@ export default function INCIFilter(props) {
         gap="2%"
         onSubmit={handleSubmit((data) => {
           if (!props.refs.list.includes(data[props.refs.registerIngredient])) {
+            const contain = JSON.parse(data[props.refs.registerContain]);
             const newValue = [
               ...props.refs.list,
               data[props.refs.registerIngredient],
@@ -32,7 +33,7 @@ export default function INCIFilter(props) {
             props.setFilter({
               ...props.filter,
               [props.refs.type === "first" ? "firstFilter" : "secondFilter"]: {
-                contain: data[props.refs.registerContain],
+                contain,
                 list: newValue,
               },
             });
