@@ -13,8 +13,11 @@ export default function Content(props) {
       setContent(res.data);
     }
     const filters = {};
-    Object.entries(props.filter).forEach(([key, value]) =>
-      value.length > 0 ? (filters[key] = value?.toString()) : null
+    Object.entries(props.filter).map(([key, value]) =>
+      typeof value === "object" && !Array.isArray(value)
+        ? (filters[value.contain === true ? "contain" : "notContain"] =
+            value.list?.toString())
+        : (filters[key] = value?.toString())
     );
     fetchProducts(filters, page);
   }, [props.filter]);
