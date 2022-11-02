@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const host = "https://aszczepanczyk-scraper-server.herokuapp.com";
-// const host = `http://localhost:5000`;
 
 export const getProducts = async (filters, page) => {
   return await axios.get(`${host}/products`, {
