@@ -4,7 +4,6 @@ import { getProducts } from "../requests/requests";
 import ProductCard from "./ProductCard";
 
 export default function Content(props) {
-  const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
 
   useEffect(() => {
@@ -19,8 +18,9 @@ export default function Content(props) {
             value.list?.toString())
         : (filters[key] = value?.toString())
     );
-    fetchProducts(filters, page);
-  }, [props.filter]);
+    console.log(props.page);
+    fetchProducts(filters, props.page);
+  }, [props.filter, props.page]);
 
   return (
     <Box
@@ -50,7 +50,6 @@ export default function Content(props) {
                 picture: element.picture,
                 inci: element.inci,
               }}
-              sx={{}}
             />
           ))
         : null}
