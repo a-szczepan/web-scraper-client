@@ -49,7 +49,7 @@ export default function PageContent() {
       <div ref={ref}></div>
       {isDesktop ? (
         <Box sx={{ display: { sm: "flex" }, gap: "15px" }}>
-          <Box sx={{ flexBasis: "20%" }}>
+          <Box flexBasis="20%">
             <INCIFilter filter={filter} setFilter={setFilter} />
           </Box>
           <Box
@@ -76,7 +76,7 @@ export default function PageContent() {
             flexDirection: "column",
             justifyContent: "center",
             gap: "5px",
-            p: "10px 0px 10px 0px",
+            p: "10px 0 10px 0",
           }}
         >
           <DrawerBox filter={filter} setFilter={setFilter} />

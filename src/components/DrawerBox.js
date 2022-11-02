@@ -11,7 +11,10 @@ export default function DrawerBox(props) {
   return (
     <div>
       <Box display="flex" gap="1%">
-        <IconButton sx={{ width: "auto" }} onClick={() => setOpen(true)}>
+        <IconButton
+          sx={{ width: "auto", ml: "1rem" }}
+          onClick={() => setOpen(true)}
+        >
           <MenuIcon />
         </IconButton>
         <SearchBar filter={props.filter} setFilter={props.setFilter} />
