@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Box } from "@mui/material";
-import INCIFilter from "./Filters";
+import Filters from "./Filters";
 import Content from "./Content";
 import SearchBar from "./SearchBar";
 import DrawerBox from "./DrawerBox";
@@ -50,7 +50,7 @@ export default function PageContent() {
       {isDesktop ? (
         <Box sx={{ display: { sm: "flex" }, gap: "15px" }}>
           <Box flexBasis="20%">
-            <INCIFilter filter={filter} setFilter={setFilter} />
+            <Filters filter={filter} setFilter={setFilter} />
           </Box>
           <Box
             flexBasis="80%"
