@@ -73,9 +73,6 @@ export default function Filters(props) {
         <ListItem>
           <BrandFilter filter={props.filter} setFilter={props.setFilter} />
         </ListItem>
-        <ListItem>
-          <Button variant="contained">{dictionary.applyFilters}</Button>
-        </ListItem>
       </List>
     </Box>
   );
