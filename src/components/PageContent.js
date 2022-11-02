@@ -9,6 +9,7 @@ import PaginationBar from "./PaginationBar";
 export default function PageContent() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 900);
   const [page, setPage] = useState(1);
+  const [numOfPages, setNumOfPages] = useState(0);
   const ref = useRef(null);
   const [filter, setFilter] = useState({
     keyWords: "",
@@ -64,6 +65,7 @@ export default function PageContent() {
               filter={filter}
               page={page}
               setPage={setPage}
+              setNumOfPages={setNumOfPages}
             />
           </Box>
         </Box>
@@ -83,6 +85,7 @@ export default function PageContent() {
             filter={filter}
             page={page}
             setPage={setPage}
+            setNumOfPages={setNumOfPages}
           />
         </Box>
       )}
@@ -90,6 +93,7 @@ export default function PageContent() {
         page={page}
         setPage={setPage}
         executeScroll={executeScroll}
+        numOfPages={numOfPages}
       />
     </Box>
   );

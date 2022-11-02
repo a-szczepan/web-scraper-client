@@ -9,7 +9,8 @@ export default function Content(props) {
   useEffect(() => {
     async function fetchProducts(filter, page) {
       const res = await getProducts(filter, page);
-      setContent(res.data);
+      setContent(res.data[0]);
+      props.setNumOfPages(Math.floor(res.data[1].all / 24) + 1);
     }
     const filters = {};
     Object.entries(props.filter).map(([key, value]) =>
@@ -18,7 +19,6 @@ export default function Content(props) {
             value.list?.toString())
         : (filters[key] = value?.toString())
     );
-    console.log(props.page);
     fetchProducts(filters, props.page);
   }, [props.filter, props.page]);
 
