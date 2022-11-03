@@ -13,7 +13,8 @@ const dictionary = {
   addFilter: "And",
   category: "Category",
   brands: "Brands",
-  applyFilters: "Apply filters",
+  clearFilters: "Clear filters",
+  noResults: "No results",
   categories: {
     "Kuracje i wcierki": "Scalp Treatment",
     Maski: "Hair Masks",

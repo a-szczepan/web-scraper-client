@@ -1,7 +1,7 @@
 import Pagination from "@mui/material/Pagination";
 
 export default function PaginationBar(props) {
-  return (
+  return props.numOfPages > 0 ? (
     <Pagination
       count={props.numOfPages}
       page={props.page}
@@ -12,5 +12,5 @@ export default function PaginationBar(props) {
       size="large"
       sx={{ alignSelf: "center", m: "10px 0 10px 0" }}
     />
-  );
+  ) : null;
 }

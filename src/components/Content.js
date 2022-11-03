@@ -1,16 +1,19 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
+import dictionary from "../languages/en";
 import { getProducts } from "../requests/requests";
 import ProductCard from "./ProductCard";
 
 export default function Content(props) {
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
     async function fetchProducts(filter, page) {
       const res = await getProducts(filter, page);
       setContent(res.data[0]);
-      props.setNumOfPages(Math.floor(res.data[1].all / 24) + 1);
+      res.data[1].all
+        ? props.setNumOfPages(Math.floor(res.data[1].all / 24) + 1)
+        : props.setNumOfPages(-1);
     }
     const filters = {};
     Object.entries(props.filter).map(([key, value]) =>
@@ -22,7 +25,11 @@ export default function Content(props) {
     fetchProducts(filters, props.page);
   }, [props.filter, props.page]);
 
-  return (
+  useEffect(() => {
+    console.log(content);
+  }, [content]);
+
+  return content?.length > 0 ? (
     <Box
       sx={{
         display: "grid",
@@ -38,21 +45,23 @@ export default function Content(props) {
         p: "1rem",
       }}
     >
-      {content.length > 0
-        ? content.map((element, index) => (
-            <ProductCard
-              key={index}
-              data={{
-                link: element.link,
-                name: element.name,
-                brand: element.brand,
-                category: element.category,
-                picture: element.picture,
-                inci: element.inci,
-              }}
-            />
-          ))
-        : null}
+      {content.map((element, index) => (
+        <ProductCard
+          key={index}
+          data={{
+            link: element.link,
+            name: element.name,
+            brand: element.brand,
+            category: element.category,
+            picture: element.picture,
+            inci: element.inci,
+          }}
+        />
+      ))}
     </Box>
-  );
+  ) : content !== null ? (
+    <Box display="flex" width="100%" justifyContent="center">
+      <Typography>{dictionary.noResults}</Typography>
+    </Box>
+  ) : null;
 }

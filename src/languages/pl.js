@@ -12,7 +12,8 @@ const dictionary = {
   addFilter: "Oraz",
   category: "Kategoria",
   brands: "Marki",
-  applyFilters: "Zaaplikuj filtry",
+  clearFilters: "Wyczyść filtry",
+  noResults: "Brak pasujących wyników",
   categories: {
     "Kuracje i wcierki": "Kuracje i wcierki",
     Maski: "Maski",
