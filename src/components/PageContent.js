@@ -49,7 +49,7 @@ export default function PageContent() {
       <div ref={ref}></div>
       {isDesktop ? (
         <Box sx={{ display: { sm: "flex" }, gap: "15px" }}>
-          <Box flexBasis="20%">
+          <Box flexBasis="20%" pl="1rem">
             <Filters filter={filter} setFilter={setFilter} />
           </Box>
           <Box
