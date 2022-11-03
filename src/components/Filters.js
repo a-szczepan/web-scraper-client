@@ -21,9 +21,9 @@ export default function Filters(props) {
 
   return (
     <Box display="flex" flexDirection="column">
-      <List>
+      <List sx={{ maxWidth: "20rem" }}>
         <ListItem>
-          <Box display="flex" flexDirection="column">
+          <Box display="flex" flexDirection="column" width="100%">
             <Typography variant="h6" sx={{ m: "12px 0 12px 0" }}>
               {dictionary.ingredients}
             </Typography>
@@ -72,6 +72,9 @@ export default function Filters(props) {
         <Divider />
         <ListItem>
           <BrandFilter filter={props.filter} setFilter={props.setFilter} />
+        </ListItem>
+        <ListItem>
+          <Button variant="contained">{dictionary.clearFilters}</Button>
         </ListItem>
       </List>
     </Box>
