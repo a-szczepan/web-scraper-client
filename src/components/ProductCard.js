@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { LanguageContext } from "../context/LanguageProvider";
 import {
   Card,
@@ -12,6 +11,13 @@ import {
 
 export default function ProductCard(props) {
   const { dictionary } = useContext(LanguageContext);
+  const [highlighted, setHighlighted] = useState([]);
+
+  useEffect(() => {
+    const contain = Object.values(props.filter).find((value) => value?.contain);
+    setHighlighted(contain?.list.map((e) => RegExp(e, "gmi")));
+  }, [props.filter]);
+
   return (
     <Card sx={{ maxWidth: 360, maxHeight: 470 }}>
       <CardContent sx={{ display: "flex" }}>
@@ -32,8 +38,33 @@ export default function ProductCard(props) {
           <Box height="200px" overflow="scroll">
             <Typography gutterBottom>{props.data.name}</Typography>
             <Typography variant="body2">{dictionary.ingredients}:</Typography>
-            <Typography variant="body2" color="text.secondary">
-              {props.data.inci}
+            <Typography component="div" variant="body2" color="text.secondary">
+              {props.data.inci
+                .replace(/\*/g, ",")
+                .replace(/•/g, ",")
+                .trim()
+                .split(/,(?!(?:[^(]*\([^)]*\))*[^()]*\))/)
+                .filter((x) => x.length > 0)
+                .map((e, index) =>
+                  highlighted.some((rx) => e.match(rx)) ? (
+                    <Box key={index} display="inline">
+                      <Box
+                        display="inline"
+                        color="secondary.main"
+                        fontWeight="bold"
+                      >
+                        {" "}
+                        {`${e}`}
+                      </Box>
+                      <Box display="inline">, </Box>
+                    </Box>
+                  ) : (
+                    <Box key={index} display="inline">
+                      {" "}
+                      {`${e}`},{" "}
+                    </Box>
+                  )
+                )}
             </Typography>
           </Box>
         </Box>
