@@ -39,32 +39,37 @@ export default function ProductCard(props) {
             <Typography gutterBottom>{props.data.name}</Typography>
             <Typography variant="body2">{dictionary.ingredients}:</Typography>
             <Typography component="div" variant="body2" color="text.secondary">
-              {props.data.inci
-                .replace(/\*/g, ",")
-                .replace(/•/g, ",")
-                .trim()
-                .split(/,(?!(?:[^(]*\([^)]*\))*[^()]*\))/)
-                .filter((x) => x.length > 0)
-                .map((e, index) =>
-                  highlighted.some((rx) => e.match(rx)) ? (
-                    <Box key={index} display="inline">
-                      <Box
-                        display="inline"
-                        color="secondary.main"
-                        fontWeight="bold"
-                      >
-                        {" "}
-                        {`${e}`}
-                      </Box>
-                      <Box display="inline">, </Box>
-                    </Box>
-                  ) : (
-                    <Box key={index} display="inline">
-                      {" "}
-                      {`${e}`},{" "}
-                    </Box>
-                  )
-                )}
+              {highlighted?.length > 0
+                ? props.data.inci
+                    .replace(/\*/g, ",")
+                    .replace(/•/g, ",")
+                    .trim()
+                    .split(/,(?!(?:[^(]*\([^)]*\))*[^()]*\))/)
+                    .filter((x) => x.length > 0)
+                    .map((e, index) =>
+                      highlighted.some((rx) => e.match(rx)) ? (
+                        <Box key={index} display="inline">
+                          <Box
+                            display="inline"
+                            color="secondary.main"
+                            fontWeight="bold"
+                          >
+                            {" "}
+                            {`${e}`}
+                          </Box>
+                          <Box display="inline">, </Box>
+                        </Box>
+                      ) : (
+                        <Box key={index} display="inline">
+                          {" "}
+                          {`${e}`},{" "}
+                        </Box>
+                      )
+                    )
+                : props.data.inci
+                    .replace(/\*/g, ",")
+                    .replace(/•/g, ",")
+                    .replace(/,{2,}/g, ",")}
             </Typography>
           </Box>
         </Box>
