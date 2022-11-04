@@ -25,10 +25,6 @@ export default function Content(props) {
     fetchProducts(filters, props.page);
   }, [props.filter, props.page]);
 
-  useEffect(() => {
-    console.log(content);
-  }, [content]);
-
   return content?.length > 0 ? (
     <Box
       sx={{
@@ -56,6 +52,7 @@ export default function Content(props) {
             picture: element.picture,
             inci: element.inci,
           }}
+          filter={props.filter}
         />
       ))}
     </Box>
