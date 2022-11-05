@@ -63,6 +63,7 @@ export default function PageContent() {
             <Content
               sx={{ width: "100%" }}
               filter={filter}
+              setFilter={setFilter}
               page={page}
               setPage={setPage}
               setNumOfPages={setNumOfPages}
@@ -83,6 +84,7 @@ export default function PageContent() {
           <Content
             sx={{ width: "100%" }}
             filter={filter}
+            setFilter={setFilter}
             page={page}
             setPage={setPage}
             setNumOfPages={setNumOfPages}

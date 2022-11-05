@@ -7,7 +7,6 @@ import {
   List,
   ListItem,
   Divider,
-  IconButton,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import BrandFilter from "./BrandFilter";
@@ -72,9 +71,6 @@ export default function Filters(props) {
         <Divider />
         <ListItem>
           <BrandFilter filter={props.filter} setFilter={props.setFilter} />
-        </ListItem>
-        <ListItem>
-          <Button variant="contained">{dictionary.clearFilters}</Button>
         </ListItem>
       </List>
     </Box>
