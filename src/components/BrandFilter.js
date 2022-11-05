@@ -26,7 +26,6 @@ export default function BrandFilter(props) {
       setBrands(brands.data.data.map((item) => item.name));
     }
     fetchData();
-    console.log(props.filter.brands);
   }, [props.filter.brands]);
 
   return (
