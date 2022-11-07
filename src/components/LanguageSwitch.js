@@ -17,7 +17,7 @@ export default function LanguageSwitch(props) {
     } else {
       changeLanguage(storageLanguage);
     }
-  }, [language]);
+  });
 
   return (
     <Box sx={{ width: "100%", maxWidth: "1537px" }}>
