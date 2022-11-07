@@ -38,7 +38,7 @@ export default function Content(props) {
         : (filters[key] = value?.toString())
     );
     fetchProducts(filters, props.page);
-  }, [props.filter, props.page]);
+  });
 
   return content?.length > 0 ? (
     <Box>
