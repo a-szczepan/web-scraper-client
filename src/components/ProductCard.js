@@ -30,7 +30,7 @@ export default function ProductCard(props) {
             p="10px"
           >
             <img
-              style={{ maxHeight: "170px" }}
+              style={{ height: "170px", maxWidth: "200px" }}
               src={props.data.picture}
               alt={`Product ${props.data.name}`}
             />
