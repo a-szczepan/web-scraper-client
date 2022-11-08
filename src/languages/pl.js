@@ -2,7 +2,7 @@ const dictionary = {
   headerText: "Filtrowanie składu produktów",
   appAnnotationI: `Aplikacja stworzona w oparciu o technologie MERN. Do scrapowania danych użyto biblioteki Puppeteer. Niniejszy projekt ma charakter edukacyjny.`,
   appAnnotationII: ` Baza zawiera produkty do pielęgnacji włosów dostępne w internetowej drogerii Rossmann. Aby nie zakłócać działania serwisu, zawężono zakres przeszukiwania do jednej kategorii produktów. Z tego samego powodu scraper nie jest również uruchamiany automatycznie. Zdjecia oraz dane produktów pochodzą ze strony Rossmann. Po kliknięciu w przycisk na karcie produktu nastąpi przekierowanie do strony źródłowej.`,
-  appDescription: `Aplikacja pozwala filtrować produkty według zawartości poszczególnych składników.`,
+  appDescription: `Aplikacja pozwala filtrować produkty według zawartości poszczególnych składników (według systemu nazewnictwa INCI).`,
   searchPlaceholder: "Szukaj (marka, nazwa produktu/serii)",
   filtersButton: "Dodaj filtry",
   ingredients: "Składniki",
