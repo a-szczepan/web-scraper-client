@@ -92,11 +92,14 @@ export default function Content(props) {
   ) : (
     <Box
       display="flex"
+      flexDirection="column"
+      gap="15px"
       width="100%"
       minHeight="45vh"
       justifyContent="center"
       alignItems="center"
     >
+      <Typography>{dictionary.wait}</Typography>
       <CircularProgress />
     </Box>
   );

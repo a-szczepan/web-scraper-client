@@ -25,6 +25,7 @@ const dictionary = {
   },
   toShop: "Przejdź do sklepu",
   github: "Kod źródłowy dostępny na:",
+  wait: "Ładowanie zawartości",
 };
 
 export default dictionary;

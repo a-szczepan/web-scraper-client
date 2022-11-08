@@ -26,6 +26,7 @@ const dictionary = {
   },
   toShop: "Go to shop",
   github: "Source code available on:",
+  wait: "Wait for this... I use the server for free :)",
 };
 
 export default dictionary;
