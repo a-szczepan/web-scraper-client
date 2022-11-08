@@ -24,7 +24,10 @@ export default function INCIFilter(props) {
         display="flex"
         gap="2%"
         onSubmit={handleSubmit((data) => {
-          if (!props.refs.list.includes(data[props.refs.registerIngredient])) {
+          if (
+            !props.refs.list.includes(data[props.refs.registerIngredient]) &
+            (data[props.refs.registerIngredient].trim().length > 0)
+          ) {
             const contain = JSON.parse(data[props.refs.registerContain]);
             const newValue = [
               ...props.refs.list,
