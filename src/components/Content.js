@@ -2,6 +2,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { LanguageContext } from "../context/LanguageProvider";
 import { useState, useEffect, useContext } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
+import CircularProgress from "@mui/material/CircularProgress";
 import { getProducts } from "../requests/requests";
 import ProductCard from "./ProductCard";
 
@@ -88,5 +89,15 @@ export default function Content(props) {
     <Box display="flex" width="100%" justifyContent="center">
       <Typography>{dictionary.noResults}</Typography>
     </Box>
-  ) : null;
+  ) : (
+    <Box
+      display="flex"
+      width="100%"
+      minHeight="45vh"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <CircularProgress />
+    </Box>
+  );
 }
