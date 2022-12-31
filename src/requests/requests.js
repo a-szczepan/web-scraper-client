@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = "https://aszczepanczyk-scraper-server.herokuapp.com";
+const host = "https://web-scraper-server.onrender.com";
 
 export const getProducts = async (filters, page) => {
   return await axios.get(`${host}/products`, {
